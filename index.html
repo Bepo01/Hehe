@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>naya website</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <div class="button-container">
+        <button id="button1" class="button1" onclick="showPopup('popup1')">Info</button>
+        <button id="button2" class="button2" onclick="showPopup('popup2')">About</button>
+        <button id="button3" class="button3" onclick="showPopup('popup3')">Hehe</button>
+
+    </div>
+
+    <div id="popup1" class="popup">
+        <div class="popup-header" onmousedown="dragPopup(event, 'popup1')">
+            <span>Popup 1</span>
+            
+            <button class="close-btn" onclick="closePopup('popup1')">✖</button>
+
+        </div>
+        <div class="popup-content">This is Popup 1!</div>
+    </div>
+
+    <div id="popup2" class="popup">
+        <div class="popup-header" onmousedown="dragPopup(event, 'popup2')">
+            <span>Popup 2</span>
+            <button class="close-btn" onclick="closePopup('popup2')">✖</button>
+        </div>
+        <div class="popup-content">This is Popup 2!</div>
+    </div>
+
+    <div id="popup3" class="popup">
+        <div class="popup-header" onmousedown="dragPopup(event, 'popup3')">
+            <span>Popup 3</span>
+            <button class="close-btn" onclick="closePopup(popup3)">✖</button>
+        </div>
+        <div class="popup-content">This is Popup 3!</div>
+    </div>
+        <script src="script.js"></script>
+</body>
+</html>
