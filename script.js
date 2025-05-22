@@ -45,3 +45,36 @@ function dragPopup(event, popupId) {
     document.addEventListener("mouseup", stopDragging);
 }
 
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const bubble = document.getElementById("bubbleText");
+    
+
+    function showBubble() {
+        bubble.classList.add("visible");
+        
+        
+        // Hide after 5 seconds
+        setTimeout(() => {
+            bubble.classList.remove("visible");
+            bubble.classList.add("hidden");
+        }, 3000);
+    }
+
+    // Trigger the animation every time the page is refreshed
+    setTimeout(showBubble, 200);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const sound = document.getElementById("bubbleSound");
+
+    // Try playing the sound automatically
+    setTimeout(() => {
+        sound.currentTime = 0; // Reset sound
+        sound.play().catch(error => console.log("Autoplay blocked:", error));
+    }, 500); // Short delay ensures it runs smoothly
+});
+
