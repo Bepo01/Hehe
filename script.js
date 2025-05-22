@@ -46,23 +46,13 @@ function dragPopup(event, popupId) {
 }
 
 
-
-
 document.addEventListener("DOMContentLoaded", function () {
     const bubble = document.getElementById("bubbleText");
     const sound = document.getElementById("bubbleSound");
+    let soundPlayed = false; // Track if sound has played
 
     function showBubble() {
         bubble.classList.add("visible");
-
-        // Ensure sound resets & plays every time
-        sound.pause();  // Stop any previous instance
-        sound.currentTime = 0;  // Reset sound position
-        sound.play().then(() => {
-            console.log("Sound played successfully");
-        }).catch(error => {
-            console.log("Autoplay blocked:", error);
-        });
 
         // Hide bubble after 5 seconds
         setTimeout(() => {
@@ -71,11 +61,24 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 5000);
     }
 
-    // If autoplay is blocked, play sound on first click
-    document.addEventListener("click", function () {
-        sound.play();
-    });
+    function playSoundOnce() {
+        if (!soundPlayed) { // Ensure it plays only once
+            sound.pause();
+            sound.currentTime = 0;
 
-    // Trigger animation and sound every time page loads
+            // Try playing the sound with autoplay restrictions handled
+            let playPromise = sound.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => console.log("Autoplay blocked. Sound will play on user interaction."));
+            }
+
+            soundPlayed = true; // Prevent further plays
+        }
+    }
+
+    // Play sound only on first mouse movement
+    document.addEventListener("mousemove", playSoundOnce, { once: true });
+
+    // Trigger bubble animation immediately
     setTimeout(showBubble, 200);
 });
