@@ -46,35 +46,32 @@ function dragPopup(event, popupId) {
 }
 
 
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
     const bubble = document.getElementById("bubbleText");
-    
+    const sound = document.getElementById("bubbleSound");
 
     function showBubble() {
         bubble.classList.add("visible");
-        
-        
-        // Hide after 5 seconds
+
+        // Hide bubble after 5 seconds
         setTimeout(() => {
             bubble.classList.remove("visible");
             bubble.classList.add("hidden");
-        }, 3000);
+        }, 5000);
     }
 
-    // Trigger the animation every time the page is refreshed
-    setTimeout(showBubble, 200);
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    const sound = document.getElementById("bubbleSound");
-
-    // Try playing the sound automatically
-    setTimeout(() => {
-        sound.currentTime = 0; // Reset sound
+    // Ensure sound plays after first mouse movement on every page load
+    function triggerOnMouseMove() {
+        sound.pause();  // Stop any previous instance
+        sound.currentTime = 0;  // Reset sound position
         sound.play().catch(error => console.log("Autoplay blocked:", error));
-    }, 500); // Short delay ensures it runs smoothly
+
+        document.removeEventListener("mousemove", triggerOnMouseMove); // Plays once per visit
+    }
+    
+    document.addEventListener("mousemove", triggerOnMouseMove); // Registers every time the page loads
+
+    // Trigger bubble immediately on page load
+    setTimeout(showBubble, 200);
 });
 
