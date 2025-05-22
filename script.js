@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const sound = document.getElementById("bubbleSound");
     let soundPlayed = false; // Track if sound has played
 
+    
     function showBubble() {
         bubble.classList.add("visible");
 
@@ -81,4 +82,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Trigger bubble animation immediately
     setTimeout(showBubble, 200);
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleButton = document.getElementById("themeToggle");
+    const body = document.body;
+
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+        body.classList.add(savedTheme);
+    } else {
+        body.classList.add(
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark-mode"
+                : "light-mode"
+        );
+    }
+
+    toggleButton.addEventListener("click", function () {
+        if (body.classList.contains("dark-mode")) {
+            body.classList.replace("dark-mode", "light-mode");
+            localStorage.setItem("theme", "light-mode");
+        } else {
+            body.classList.replace("light-mode", "dark-mode");
+            localStorage.setItem("theme", "dark-mode");
+        }
+    });
 });

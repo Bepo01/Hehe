@@ -5,8 +5,94 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: url('Itachi\ Uchiha.jpg') no-repeat center center/cover;
+    
 }
+
+#themeToggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode #themeToggle {
+    background-color: #333;
+    color: white;
+}
+
+.dark-mode #themeToggle:hover {
+    background-color: #555; /* Dark mode hover effect */
+}
+
+.light-mode #themeToggle {
+    background-color: #f3f3f3;
+    color: black;
+}
+
+.light-mode #themeToggle:hover {
+    background-color: #dadada; /* Light mode hover effect */
+}
+
+.dark-mode .bubble {
+     position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.2); /* Lower opacity for more blur */
+    backdrop-filter: blur(15px); /* Stronger blur effect */
+    -webkit-backdrop-filter: blur(15px); /* Support for Safari */
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 1.5s ease-in;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+
+}
+
+.light-mode .bubble{
+     position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(54, 54, 54, 0.2); /* Lower opacity for more blur */
+    backdrop-filter: blur(15px); /* Stronger blur effect */
+    -webkit-backdrop-filter: blur(15px); /* Support for Safari */
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 1.5s ease-in;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+
+}
+
+
+
+
+body {
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.light-mode {
+    background: url('Light\ Mode.png') no-repeat center center/cover;
+}
+
+.dark-mode {
+    background: url('Dark\ Mode.png') no-repeat center center/cover;
+}
+
+
 .logo-container {
     position: fixed;
     top: 10px;
@@ -30,31 +116,24 @@ body {
     pointer-events: auto;
 }
 
-.bubble {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.2); /* Lower opacity for more blur */
-    backdrop-filter: blur(15px); /* Stronger blur effect */
-    -webkit-backdrop-filter: blur(15px); /* Support for Safari */
-    color: white;
-    padding: 15px 25px;
-    border: none;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    font-size: 18px;
-    opacity: 0;
-    transition: opacity 1.5s ease-in;
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
 }
+
+
 
 .visible {
     opacity: 1;
 }
 .hidden {
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
+    animation: fadeOut 1s ease-in-out backwards;
 }
 
 
